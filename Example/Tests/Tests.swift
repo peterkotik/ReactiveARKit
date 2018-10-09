@@ -1,5 +1,5 @@
 import XCTest
-import ReactiveARKit
+@testable import ReactiveARKit
 
 class Tests: XCTestCase {
     

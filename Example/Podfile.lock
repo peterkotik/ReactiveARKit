@@ -1,0 +1,16 @@
+PODS:
+  - ReactiveARKit (0.1.0)
+
+DEPENDENCIES:
+  - ReactiveARKit (from `../`)
+
+EXTERNAL SOURCES:
+  ReactiveARKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ReactiveARKit: 8b0a280af39b11161b5f2d1b5a0b76de5bdc9aad
+
+PODFILE CHECKSUM: bdd91d92de5c5c44e69899d53f31150c4c16d618
+
+COCOAPODS: 1.5.3
