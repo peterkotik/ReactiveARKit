@@ -1,16 +1,30 @@
 PODS:
-  - ReactiveARKit (0.1.0)
+  - ReactiveARKit (0.1.0):
+    - RxCocoa
+    - RxSwift
+  - RxCocoa (4.3.1):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.3.1)
 
 DEPENDENCIES:
   - ReactiveARKit (from `../`)
+  - RxCocoa
+  - RxSwift
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - RxCocoa
+    - RxSwift
 
 EXTERNAL SOURCES:
   ReactiveARKit:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ReactiveARKit: 8b0a280af39b11161b5f2d1b5a0b76de5bdc9aad
+  ReactiveARKit: f97f90a4619f2da25ae684f028b7a914b1c969ab
+  RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
+  RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
 
-PODFILE CHECKSUM: bdd91d92de5c5c44e69899d53f31150c4c16d618
+PODFILE CHECKSUM: bec6f836837514357c2daa44af095a747488bb50
 
 COCOAPODS: 1.5.3
