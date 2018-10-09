@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'ReactiveARKit_Example' do
+  pod 'ReactiveARKit', :path => '../'
+
+  target 'ReactiveARKit_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
