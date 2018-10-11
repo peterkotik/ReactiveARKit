@@ -53,7 +53,7 @@ class ViewController: UIViewController {
 //        sceneView.didRemoveAnchors.subscribe {
 //            print("didRemoveAnchors: \($0)")
 //        }.disposed(by: disposeBag)
-//        
+//
 //        sceneView.didAddARObjectAnchor.subscribe {
 //            print("didAddObjectAnchor: \($0)")
 //        }.disposed(by: disposeBag)
@@ -74,32 +74,56 @@ class ViewController: UIViewController {
 //        sceneView.didRemoveObjectAnchor.subscribe {
 //            print("didRemoveObjectAnchor: \($0)")
 //        }.disposed(by: disposeBag)
+//
+//        sceneView.didAddARPlaneAnchor.subscribe {
+//            guard
+//                let planeAnchor = $0.element
+//                else { return }
+//
+//            print("Added ARPlaneAnchor: \(planeAnchor)")
+//        }.disposed(by: disposeBag)
+//
+//        sceneView.didUpdatePlaneAnchor.subscribe { [weak self] in
+//            guard
+//                let self = self,
+//                let planeAnchor = $0.element
+//                else { return }
+//
+//            print("Updated ARPlaneAnchor: \(planeAnchor)")
+//            self.sceneView.session.remove(anchor: planeAnchor as ARAnchor)
+//        }.disposed(by: disposeBag)
+//
+//        sceneView.didRemovePlaneAnchor.subscribe {
+//            guard
+//                let planeAnchor = $0.element
+//                else { return }
+//
+//            print("Removed ARPlaneAnchor: \(planeAnchor)")
+//        }.disposed(by: disposeBag)
         
-        sceneView.didAddARPlaneAnchor.subscribe {
-            guard
-                let planeAnchor = $0.element
-                else { return }
+        sceneView.didAddARImageAnchor.subscribe {
+            guard let imageAnchor = $0.element else { return }
             
-            print("Added ARPlaneAnchor: \(planeAnchor)")
+            print("Added ARImageAnchor: \(imageAnchor)")
         }.disposed(by: disposeBag)
         
-        sceneView.didUpdatePlaneAnchor.subscribe { [weak self] in
+        sceneView.didUpdateARImageAnchor.subscribe { [weak self] in
             guard
                 let self = self,
-                let planeAnchor = $0.element
+                let imageAnchor = $0.element
                 else { return }
             
-            print("Updated ARPlaneAnchor: \(planeAnchor)")
-            self.sceneView.session.remove(anchor: planeAnchor as ARAnchor)
+            print("Updated ARImageAnchor: \(imageAnchor)")
+            self.sceneView.session.remove(anchor: imageAnchor as ARAnchor)
         }.disposed(by: disposeBag)
         
-        sceneView.didRemovePlaneAnchor.subscribe {
+        sceneView.didRemoveARImageAnchor.subscribe {
             guard
-                let planeAnchor = $0.element
+                let imageAnchor = $0.element
                 else { return }
             
-            print("Removed ARPlaneAnchor: \(planeAnchor)")
-            }.disposed(by: disposeBag)
+            print("Remove ARImageAnchor: \(imageAnchor)")
+        }.disposed(by: disposeBag)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -110,8 +134,12 @@ class ViewController: UIViewController {
         guard let referenceObjects = ARReferenceObject.referenceObjects(inGroupNamed: "AR Resources", bundle: nil) else {
             fatalError("Failed to find ARReferenceObjects.")
         }
+        guard let referenceImages = ARReferenceImage.referenceImages(inGroupNamed: "AR Resources-1", bundle: nil) else {
+            fatalError("Failed to find ARRefenceImages")
+        }
         
         configuration.detectionObjects = referenceObjects
+        configuration.detectionImages = referenceImages
         
         sceneView.session.run(configuration)
     }
