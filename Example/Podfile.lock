@@ -2,19 +2,27 @@ PODS:
   - ReactiveARKit (0.1.0):
     - RxCocoa
     - RxSwift
+  - RxBlocking (4.3.1):
+    - RxSwift (~> 4.0)
   - RxCocoa (4.3.1):
     - RxSwift (~> 4.0)
   - RxSwift (4.3.1)
+  - RxTest (4.3.1):
+    - RxSwift (~> 4.0)
 
 DEPENDENCIES:
   - ReactiveARKit (from `../`)
+  - RxBlocking
   - RxCocoa
   - RxSwift
+  - RxTest
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - RxBlocking
     - RxCocoa
     - RxSwift
+    - RxTest
 
 EXTERNAL SOURCES:
   ReactiveARKit:
@@ -22,9 +30,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   ReactiveARKit: f97f90a4619f2da25ae684f028b7a914b1c969ab
+  RxBlocking: 64c051285261ca2339481e91b5f70eb06b03660a
   RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
   RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
+  RxTest: ea97a208826906f3904c0debdd09575ebcbfe216
 
-PODFILE CHECKSUM: bec6f836837514357c2daa44af095a747488bb50
+PODFILE CHECKSUM: 263035d908f316366cb8cd3be86edd2c88165456
 
 COCOAPODS: 1.5.3
