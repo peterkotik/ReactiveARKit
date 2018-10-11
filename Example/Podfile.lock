@@ -29,7 +29,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ReactiveARKit: f97f90a4619f2da25ae684f028b7a914b1c969ab
+  ReactiveARKit: 0f4c9e6da4eeffce4241bb62ec25d087616a5199
   RxBlocking: 64c051285261ca2339481e91b5f70eb06b03660a
   RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
   RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
