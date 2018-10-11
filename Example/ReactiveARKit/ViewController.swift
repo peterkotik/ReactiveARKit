@@ -53,27 +53,53 @@ class ViewController: UIViewController {
 //        sceneView.didRemoveAnchors.subscribe {
 //            print("didRemoveAnchors: \($0)")
 //        }.disposed(by: disposeBag)
+//        
+//        sceneView.didAddARObjectAnchor.subscribe {
+//            print("didAddObjectAnchor: \($0)")
+//        }.disposed(by: disposeBag)
+//
+//        sceneView.didUpdateARObjectAnchor.subscribe { [weak self] in
+//            guard
+//                let self = self,
+//                let anchor = $0.element
+//                else {
+//                    print("ERROR!!!!!: Failed to convert ARObjectAnchor to ARAnchor")
+//                    return
+//            }
+//
+//            print("didUpdateARObjectAnchor: \(anchor)")
+//            self.sceneView.session.remove(anchor: anchor as ARAnchor)
+//        }.disposed(by: disposeBag)
+//
+//        sceneView.didRemoveObjectAnchor.subscribe {
+//            print("didRemoveObjectAnchor: \($0)")
+//        }.disposed(by: disposeBag)
         
-        sceneView.didAddARObjectAnchor.subscribe {
-            print("didAddObjectAnchor: \($0)")
+        sceneView.didAddARPlaneAnchor.subscribe {
+            guard
+                let planeAnchor = $0.element
+                else { return }
+            
+            print("Added ARPlaneAnchor: \(planeAnchor)")
         }.disposed(by: disposeBag)
         
-        sceneView.didUpdateARObjectAnchor.subscribe { [weak self] in
+        sceneView.didUpdatePlaneAnchor.subscribe { [weak self] in
             guard
                 let self = self,
-                let anchor = $0.element
-                else {
-                    print("ERROR!!!!!: Failed to convert ARObjectAnchor to ARAnchor")
-                    return
-            }
-
-            print("didUpdateARObjectAnchor: \(anchor)")
-            self.sceneView.session.remove(anchor: anchor as ARAnchor)
+                let planeAnchor = $0.element
+                else { return }
+            
+            print("Updated ARPlaneAnchor: \(planeAnchor)")
+            self.sceneView.session.remove(anchor: planeAnchor as ARAnchor)
         }.disposed(by: disposeBag)
         
-        sceneView.didRemoveObjectAnchor.subscribe {
-            print("didRemoveObjectAnchor: \($0)")
-        }.disposed(by: disposeBag)
+        sceneView.didRemovePlaneAnchor.subscribe {
+            guard
+                let planeAnchor = $0.element
+                else { return }
+            
+            print("Removed ARPlaneAnchor: \(planeAnchor)")
+            }.disposed(by: disposeBag)
     }
     
     override func viewDidAppear(_ animated: Bool) {
