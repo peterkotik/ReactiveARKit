@@ -100,34 +100,60 @@ class ViewController: UIViewController {
 //
 //            print("Removed ARPlaneAnchor: \(planeAnchor)")
 //        }.disposed(by: disposeBag)
-        
-        sceneView.didAddARImageAnchor.subscribe {
-            guard let imageAnchor = $0.element else { return }
-            
-            print("Added ARImageAnchor: \(imageAnchor)")
-        }.disposed(by: disposeBag)
-        
-        sceneView.didUpdateARImageAnchor.subscribe { [weak self] in
-            guard
-                let self = self,
-                let imageAnchor = $0.element
-                else { return }
-            
-            print("Updated ARImageAnchor: \(imageAnchor)")
-            self.sceneView.session.remove(anchor: imageAnchor as ARAnchor)
-        }.disposed(by: disposeBag)
-        
-        sceneView.didRemoveARImageAnchor.subscribe {
-            guard
-                let imageAnchor = $0.element
-                else { return }
-            
-            print("Remove ARImageAnchor: \(imageAnchor)")
-        }.disposed(by: disposeBag)
+//
+//        sceneView.didAddARImageAnchor.subscribe {
+//            guard let imageAnchor = $0.element else { return }
+//
+//            print("Added ARImageAnchor: \(imageAnchor)")
+//        }.disposed(by: disposeBag)
+//
+//        sceneView.didUpdateARImageAnchor.subscribe { [weak self] in
+//            guard
+//                let self = self,
+//                let imageAnchor = $0.element
+//                else { return }
+//
+//            print("Updated ARImageAnchor: \(imageAnchor)")
+//            self.sceneView.session.remove(anchor: imageAnchor as ARAnchor)
+//        }.disposed(by: disposeBag)
+//
+//        sceneView.didRemoveARImageAnchor.subscribe {
+//            guard
+//                let imageAnchor = $0.element
+//                else { return }
+//
+//            print("Remove ARImageAnchor: \(imageAnchor)")
+//        }.disposed(by: disposeBag)
+//
+//        sceneView.didAddFaceAnchor.subscribe {
+//            guard let faceAnchor = $0.element else { return }
+//
+//            print("Added ARFaceAnchor: \(faceAnchor)")
+//        }.disposed(by: disposeBag)
+//
+//        sceneView.didUpdateFaceAnchor.subscribe { [weak self] in
+//            guard
+//                let self = self,
+//                let faceAnchor = $0.element
+//                else { return }
+//
+//            print("Updated ARFaceAnchor: \(faceAnchor)")
+//            self.sceneView.session.remove(anchor: faceAnchor as ARAnchor)
+//        }.disposed(by: disposeBag)
+//
+//        sceneView.didRemoveARFaceAnchor.subscribe {
+//            guard let faceAnchor = $0.element else { return }
+//
+//            print("Removed ARFaceAnchor: \(faceAnchor)")
+//        }.disposed(by: disposeBag)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        startWorldTrakingSession()
+    }
+    
+    func startWorldTrakingSession() {
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = .horizontal
         
@@ -141,6 +167,11 @@ class ViewController: UIViewController {
         configuration.detectionObjects = referenceObjects
         configuration.detectionImages = referenceImages
         
+        sceneView.session.run(configuration)
+    }
+    
+    func startFaceTrackingSession() {
+        let configuration = ARFaceTrackingConfiguration()
         sceneView.session.run(configuration)
     }
 
