@@ -19,12 +19,30 @@ class RxARSessionDelegateProxy: DelegateProxy<ARSession, ARSessionDelegate>, ARS
         super.init(parentObject: parentObject, delegateProxy: RxARSessionDelegateProxy.self)
     }
 
+    // MARK: Session start BehaviorSubject
     var didStartPublishSubject: BehaviorSubject<Bool> = BehaviorSubject<Bool>(value: false)
+
+    // MARK: ARObjectAnchor PublishSubjects
     var didAddObjectAnchor: PublishSubject<ARObjectAnchor> = PublishSubject<ARObjectAnchor>()
     var didUpdateObjectAnchor: PublishSubject<ARObjectAnchor> = PublishSubject<ARObjectAnchor>()
     var didRemoveObjectAnchor: PublishSubject<ARObjectAnchor> = PublishSubject<ARObjectAnchor>()
     
-    // MARK: Delegate subjects
+    // MARK: ARPlaneAnchor PublishSubjects
+    var didAddPlaneAnchor: PublishSubject<ARPlaneAnchor> = PublishSubject<ARPlaneAnchor>()
+    var didUpdatePlaneAnchor: PublishSubject<ARPlaneAnchor> = PublishSubject<ARPlaneAnchor>()
+    var didRemovePlaneAnchor: PublishSubject<ARPlaneAnchor> = PublishSubject<ARPlaneAnchor>()
+    
+    // MARK: ARImageAnchor PublishSubjects
+    var didAddImageAnchor: PublishSubject<ARImageAnchor> = PublishSubject<ARImageAnchor>()
+    var didUpdateImageAnchor: PublishSubject<ARImageAnchor> = PublishSubject<ARImageAnchor>()
+    var didRemoveImageAnchor: PublishSubject<ARImageAnchor> = PublishSubject<ARImageAnchor>()
+    
+    // MARK: ARFaceAnchor PublishSubjects
+    var didAddFaceAnchor: PublishSubject<ARFaceAnchor> = PublishSubject<ARFaceAnchor>()
+    var didUpdateFaceAnchor: PublishSubject<ARFaceAnchor> = PublishSubject<ARFaceAnchor>()
+    var didRemoveFaceAnchor: PublishSubject<ARFaceAnchor> = PublishSubject<ARFaceAnchor>()
+    
+    // MARK: Delegate PublishSubjects
     var didUpdateFrame: PublishSubject<(ARSession, ARFrame)> = PublishSubject<(ARSession, ARFrame)>()
     var didAddAnchors: PublishSubject<(ARSession, [ARAnchor])> = PublishSubject<(ARSession, [ARAnchor])>()
     var didUpdateAnchors: PublishSubject<(ARSession, [ARAnchor])> = PublishSubject<(ARSession, [ARAnchor])>()
@@ -40,6 +58,7 @@ class RxARSessionDelegateProxy: DelegateProxy<ARSession, ARSessionDelegate>, ARS
         didStartPublishSubject.onCompleted()
         
         didUpdateFrame.onNext((session, frame))
+
         delegateForward.session?(session, didUpdate: frame)
     }
     
@@ -47,6 +66,9 @@ class RxARSessionDelegateProxy: DelegateProxy<ARSession, ARSessionDelegate>, ARS
         guard let delegateForward = forwardToDelegate() else { fatalError("Failed to forward \(#function) to RxARSessionDelegateProxy") }
         
         anchors.filter { $0 is ARObjectAnchor }.map { ARObjectAnchor(anchor: $0) }.forEach { didAddObjectAnchor.onNext($0) }
+        anchors.filter { $0 is ARPlaneAnchor }.map { ARPlaneAnchor(anchor: $0) }.forEach { didAddPlaneAnchor.onNext($0) }
+        anchors.filter { $0 is ARImageAnchor }.map { ARImageAnchor(anchor: $0) }.forEach { didAddImageAnchor.onNext($0) }
+        anchors.filter { $0 is ARFaceAnchor }.map { ARFaceAnchor(anchor: $0) }.forEach { didAddFaceAnchor.onNext($0) }
         
         didAddAnchors.onNext((session, anchors))
         
@@ -57,6 +79,9 @@ class RxARSessionDelegateProxy: DelegateProxy<ARSession, ARSessionDelegate>, ARS
         guard let delegateForward = forwardToDelegate() else { fatalError("Failed to forward \(#function) to RxARSessionDelegateProxy") }
         
         anchors.filter { $0 is ARObjectAnchor }.map { ARObjectAnchor(anchor: $0) }.forEach { didUpdateObjectAnchor.onNext($0) }
+        anchors.filter { $0 is ARPlaneAnchor }.map { ARPlaneAnchor(anchor: $0) }.forEach { didUpdatePlaneAnchor.onNext($0) }
+        anchors.filter { $0 is ARImageAnchor }.map { ARImageAnchor(anchor: $0) }.forEach { didUpdateImageAnchor.onNext($0) }
+        anchors.filter { $0 is ARFaceAnchor }.map { ARFaceAnchor(anchor: $0) }.forEach { didUpdateFaceAnchor.onNext($0) }
         
         didUpdateAnchors.onNext((session, anchors))
         
@@ -67,6 +92,9 @@ class RxARSessionDelegateProxy: DelegateProxy<ARSession, ARSessionDelegate>, ARS
         guard let delegateForward = forwardToDelegate() else { fatalError("Failed to forward \(#function) to RxARSessionDelegateProxy") }
         
         anchors.filter { $0 is ARObjectAnchor }.map { ARObjectAnchor(anchor: $0) }.forEach { didRemoveObjectAnchor.onNext($0) }
+        anchors.filter { $0 is ARPlaneAnchor }.map { ARPlaneAnchor(anchor: $0) }.forEach { didRemovePlaneAnchor.onNext($0) }
+        anchors.filter { $0 is ARImageAnchor }.map { ARImageAnchor(anchor: $0) }.forEach { didRemoveImageAnchor.onNext($0) }
+        anchors.filter { $0 is ARFaceAnchor }.map { ARFaceAnchor(anchor: $0) }.forEach { didRemoveFaceAnchor.onNext($0) }
         
         didRemoveAnchors.onNext((session, anchors))
         
