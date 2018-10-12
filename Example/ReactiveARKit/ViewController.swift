@@ -28,124 +28,163 @@ class ViewController: UIViewController {
         sceneView.showsNodeCount = true
         #endif
         
-//        sceneView.sessionStarted.subscribe {
-//            print("sessionStarted: \($0)")
-//        }.disposed(by: disposeBag)
-//
-//        sceneView.didAddAnchors.subscribe {
-//            print("didAddAnchors: \($0)")
-//        }.disposed(by: disposeBag)
-//
-//        sceneView.didUpdateAnchors.subscribe { [weak self] in
-//            print("didUpdateAnchors: \($0)")
-//            guard
-//                let self = self,
-//                let tuple = $0.element,
-//                let anchor = tuple.1.first
-//                else {
-//                print("Could not cast tuple to non optional tuple in didUpdateAnchors")
-//                return
-//            }
-//
-//            self.sceneView.session.remove(anchor: anchor)
-//        }.disposed(by: disposeBag)
-//
-//        sceneView.didRemoveAnchors.subscribe {
-//            print("didRemoveAnchors: \($0)")
-//        }.disposed(by: disposeBag)
-//
-//        sceneView.didAddARObjectAnchor.subscribe {
-//            print("didAddObjectAnchor: \($0)")
-//        }.disposed(by: disposeBag)
-//
-//        sceneView.didUpdateARObjectAnchor.subscribe { [weak self] in
-//            guard
-//                let self = self,
-//                let anchor = $0.element
-//                else {
-//                    print("ERROR!!!!!: Failed to convert ARObjectAnchor to ARAnchor")
-//                    return
-//            }
-//
-//            print("didUpdateARObjectAnchor: \(anchor)")
-//            self.sceneView.session.remove(anchor: anchor as ARAnchor)
-//        }.disposed(by: disposeBag)
-//
-//        sceneView.didRemoveObjectAnchor.subscribe {
-//            print("didRemoveObjectAnchor: \($0)")
-//        }.disposed(by: disposeBag)
-//
-//        sceneView.didAddARPlaneAnchor.subscribe {
-//            guard
-//                let planeAnchor = $0.element
-//                else { return }
-//
-//            print("Added ARPlaneAnchor: \(planeAnchor)")
-//        }.disposed(by: disposeBag)
-//
-//        sceneView.didUpdatePlaneAnchor.subscribe { [weak self] in
-//            guard
-//                let self = self,
-//                let planeAnchor = $0.element
-//                else { return }
-//
-//            print("Updated ARPlaneAnchor: \(planeAnchor)")
-//            self.sceneView.session.remove(anchor: planeAnchor as ARAnchor)
-//        }.disposed(by: disposeBag)
-//
-//        sceneView.didRemovePlaneAnchor.subscribe {
-//            guard
-//                let planeAnchor = $0.element
-//                else { return }
-//
-//            print("Removed ARPlaneAnchor: \(planeAnchor)")
-//        }.disposed(by: disposeBag)
-//
-//        sceneView.didAddARImageAnchor.subscribe {
-//            guard let imageAnchor = $0.element else { return }
-//
-//            print("Added ARImageAnchor: \(imageAnchor)")
-//        }.disposed(by: disposeBag)
-//
-//        sceneView.didUpdateARImageAnchor.subscribe { [weak self] in
-//            guard
-//                let self = self,
-//                let imageAnchor = $0.element
-//                else { return }
-//
-//            print("Updated ARImageAnchor: \(imageAnchor)")
-//            self.sceneView.session.remove(anchor: imageAnchor as ARAnchor)
-//        }.disposed(by: disposeBag)
-//
-//        sceneView.didRemoveARImageAnchor.subscribe {
-//            guard
-//                let imageAnchor = $0.element
-//                else { return }
-//
-//            print("Remove ARImageAnchor: \(imageAnchor)")
-//        }.disposed(by: disposeBag)
-//
-//        sceneView.didAddFaceAnchor.subscribe {
-//            guard let faceAnchor = $0.element else { return }
-//
-//            print("Added ARFaceAnchor: \(faceAnchor)")
-//        }.disposed(by: disposeBag)
-//
-//        sceneView.didUpdateFaceAnchor.subscribe { [weak self] in
-//            guard
-//                let self = self,
-//                let faceAnchor = $0.element
-//                else { return }
-//
-//            print("Updated ARFaceAnchor: \(faceAnchor)")
-//            self.sceneView.session.remove(anchor: faceAnchor as ARAnchor)
-//        }.disposed(by: disposeBag)
-//
-//        sceneView.didRemoveARFaceAnchor.subscribe {
-//            guard let faceAnchor = $0.element else { return }
-//
-//            print("Removed ARFaceAnchor: \(faceAnchor)")
-//        }.disposed(by: disposeBag)
+        sceneView.sessionStarted.subscribe {
+            print("sessionStarted: \($0)")
+        }.disposed(by: disposeBag)
+
+        sceneView.didAddAnchors.subscribe {
+            print("didAddAnchors: \($0)")
+        }.disposed(by: disposeBag)
+
+        sceneView.didUpdateAnchors.subscribe { [weak self] in
+            print("didUpdateAnchors: \($0)")
+            guard
+                let self = self,
+                let tuple = $0.element,
+                let anchor = tuple.1.first
+                else {
+                print("Could not cast tuple to non optional tuple in didUpdateAnchors")
+                return
+            }
+
+            self.sceneView.session.remove(anchor: anchor)
+        }.disposed(by: disposeBag)
+
+        sceneView.didRemoveAnchors.subscribe {
+            print("didRemoveAnchors: \($0)")
+        }.disposed(by: disposeBag)
+
+        sceneView.didAddARObjectAnchor.subscribe {
+            print("didAddObjectAnchor: \($0)")
+        }.disposed(by: disposeBag)
+
+        sceneView.didUpdateARObjectAnchor.subscribe { [weak self] in
+            guard
+                let self = self,
+                let anchor = $0.element
+                else {
+                    print("ERROR!!!!!: Failed to convert ARObjectAnchor to ARAnchor")
+                    return
+            }
+
+            print("didUpdateARObjectAnchor: \(anchor)")
+            self.sceneView.session.remove(anchor: anchor as ARAnchor)
+        }.disposed(by: disposeBag)
+
+        sceneView.didRemoveObjectAnchor.subscribe {
+            print("didRemoveObjectAnchor: \($0)")
+        }.disposed(by: disposeBag)
+
+        sceneView.didAddARPlaneAnchor.subscribe {
+            guard
+                let planeAnchor = $0.element
+                else { return }
+
+            print("Added ARPlaneAnchor: \(planeAnchor)")
+        }.disposed(by: disposeBag)
+
+        sceneView.didUpdatePlaneAnchor.subscribe { [weak self] in
+            guard
+                let self = self,
+                let planeAnchor = $0.element
+                else { return }
+
+            print("Updated ARPlaneAnchor: \(planeAnchor)")
+            self.sceneView.session.remove(anchor: planeAnchor as ARAnchor)
+        }.disposed(by: disposeBag)
+
+        sceneView.didRemovePlaneAnchor.subscribe {
+            guard
+                let planeAnchor = $0.element
+                else { return }
+
+            print("Removed ARPlaneAnchor: \(planeAnchor)")
+        }.disposed(by: disposeBag)
+
+        sceneView.didAddARImageAnchor.subscribe {
+            guard let imageAnchor = $0.element else { return }
+
+            print("Added ARImageAnchor: \(imageAnchor)")
+        }.disposed(by: disposeBag)
+
+        sceneView.didUpdateARImageAnchor.subscribe { [weak self] in
+            guard
+                let self = self,
+                let imageAnchor = $0.element
+                else { return }
+
+            print("Updated ARImageAnchor: \(imageAnchor)")
+            self.sceneView.session.remove(anchor: imageAnchor as ARAnchor)
+        }.disposed(by: disposeBag)
+
+        sceneView.didRemoveARImageAnchor.subscribe {
+            guard
+                let imageAnchor = $0.element
+                else { return }
+
+            print("Remove ARImageAnchor: \(imageAnchor)")
+        }.disposed(by: disposeBag)
+
+        sceneView.didAddFaceAnchor.subscribe {
+            guard let faceAnchor = $0.element else { return }
+
+            print("Added ARFaceAnchor: \(faceAnchor)")
+        }.disposed(by: disposeBag)
+
+        sceneView.didUpdateFaceAnchor.subscribe { [weak self] in
+            guard
+                let self = self,
+                let faceAnchor = $0.element
+                else { return }
+
+            print("Updated ARFaceAnchor: \(faceAnchor)")
+            self.sceneView.session.remove(anchor: faceAnchor as ARAnchor)
+        }.disposed(by: disposeBag)
+
+        sceneView.didRemoveARFaceAnchor.subscribe {
+            guard let faceAnchor = $0.element else { return }
+
+            print("Removed ARFaceAnchor: \(faceAnchor)")
+        }.disposed(by: disposeBag)
+        
+        sceneView.nodeForAnchor.subscribe {
+            guard let tuple = $0.element else { return }
+            
+            print("ARSKView: \(tuple.0)")
+            print("SKNode: \(tuple.1)")
+        }.disposed(by: disposeBag)
+        
+        sceneView.didAddNodeForAnchor.subscribe {
+            guard let tuple = $0.element else { return }
+            
+            print("ARSKView: \(tuple.0)")
+            print("SKNode: \(tuple.1)")
+            print("ARAnchor: \(tuple.2)")
+        }.disposed(by: disposeBag)
+        
+        sceneView.willUpdateNodeForAnchor.subscribe {
+            guard let tuple = $0.element else { return }
+            
+            print("ARSKView: \(tuple.0)")
+            print("SKNode: \(tuple.1)")
+            print("ARAnchor: \(tuple.2)")
+        }.disposed(by: disposeBag)
+        
+        sceneView.didUpdateNodeForAnchor.subscribe {
+            guard let tuple = $0.element else { return }
+            
+            print("ARSKView: \(tuple.0)")
+            print("SKNode: \(tuple.1)")
+            print("ARAnchor: \(tuple.2)")
+        }.disposed(by: disposeBag)
+        
+        sceneView.didRemoveNodeForAnchor.subscribe {
+            guard let tuple = $0.element else { return }
+            
+            print("ARSKView: \(tuple.0)")
+            print("SKNode: \(tuple.1)")
+            print("ARAnchor: \(tuple.2)")
+        }.disposed(by: disposeBag)
     }
     
     override func viewDidAppear(_ animated: Bool) {
