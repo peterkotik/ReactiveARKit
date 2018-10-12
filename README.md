@@ -1,6 +1,6 @@
 # ReactiveARKit
 
-ReactiveARKit is an RxSwift framework that provides a custom ARSKView that emits it's events as Observable sequences. ReactiveARKit removes the need to implement ARSKViewDelegate and ARSessionDelegate methods as those delegate methods are emitted as events. You should not set the ARSKViewDelegate or ARSessionDelegate of a ReactiveARSKView. If you need to use your own delegate objects, you should use a regular ARSKView instead.
+ReactiveARKit is an RxSwift framework that provides a custom ARSKView that emits its events as Observable sequences. ReactiveARKit removes the need to implement ARSKViewDelegate and ARSessionDelegate methods as those delegate methods are emitted as events. You should not set the ARSKViewDelegate or ARSessionDelegate of a ReactiveARSKView. If you need to use your own delegate objects, you should use a regular ARSKView instead.
 
 <!---[![CI Status](https://img.shields.io/travis/jalilk/ReactiveARKit.svg?style=flat)](https://travis-ci.org/jalilk/ReactiveARKit)
 [![Version](https://img.shields.io/cocoapods/v/ReactiveARKit.svg?style=flat)](https://cocoapods.org/pods/ReactiveARKit)
